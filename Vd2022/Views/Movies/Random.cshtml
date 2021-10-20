@@ -1,0 +1,25 @@
+﻿@model Vd2022.ViewModels.RandomMovieViewModel
+@{
+    ViewBag.Title = "Random";
+}
+
+
+<!--><h2>"arobase"(((Movie)ViewData["Movie"]).Name)</h2></!-->
+
+<h2>"arobase"ViewBag.UicMovies.Name</h2>
+
+<h2>@Model.Movie.Name</h2>
+
+@if (Model.Customers.Count == 0)
+{<text>No one has rented this movie before </text>}
+else
+{
+<ul>
+    @foreach (var item in Model.Customers)
+    {
+        <li>@item.Name</li>
+    }
+</ul>
+}
+
+

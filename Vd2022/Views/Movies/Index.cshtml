@@ -1,0 +1,26 @@
+﻿@model Vd2022.Models.Movie
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Movies</h2>
+
+<table class=" table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in ViewBag.MoviesList)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink((string)movie.Name, "Detail", "Movies", new { id = movie.Id }, null)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

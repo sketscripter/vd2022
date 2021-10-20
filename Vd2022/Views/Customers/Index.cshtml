@@ -1,0 +1,26 @@
+﻿@model Vd2022.Models.Customer
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customers</h2>
+
+<table class=" table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in ViewBag.CustomersList)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink((string)customer.Name, "Detail", "Customers", new { id = customer.Id }, null)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
