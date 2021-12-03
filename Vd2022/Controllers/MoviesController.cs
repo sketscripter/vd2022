@@ -42,7 +42,7 @@ namespace Vd2022.Controllers
             var newMovieViewModel = new movieViewModel()
             {
                 Genres = genres,
-                Movie = null
+                Movie = new Movie()
             };
             return View(newMovieViewModel);
         }
@@ -74,7 +74,19 @@ namespace Vd2022.Controllers
         {
             if (movie.Id == 0)
             {
-              _context.Movies.Add(movie);
+                if (ModelState.IsValid == false)
+                {
+                    var genres = _context.Genres.ToList();
+
+                    var newMovieViewModel = new movieViewModel()
+                    {
+                        Movie = movie,
+                        Genres = genres
+                    };
+
+                    return View("New", newMovieViewModel);
+                }
+                _context.Movies.Add(movie);
             }
             else
             {

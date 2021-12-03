@@ -165,6 +165,10 @@
     <Compile Include="Migrations\202112031917257_ChangedMovieGenreIdDisplay.designer.cs">
       <DependentUpon>202112031917257_ChangedMovieGenreIdDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112032020459_AddedAnnotationsCustomerPlusMovies.cs" />
+    <Compile Include="Migrations\202112032020459_AddedAnnotationsCustomerPlusMovies.designer.cs">
+      <DependentUpon>202112032020459_AddedAnnotationsCustomerPlusMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -260,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112031917257_ChangedMovieGenreIdDisplay.resx">
       <DependentUpon>202112031917257_ChangedMovieGenreIdDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112032020459_AddedAnnotationsCustomerPlusMovies.resx">
+      <DependentUpon>202112032020459_AddedAnnotationsCustomerPlusMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

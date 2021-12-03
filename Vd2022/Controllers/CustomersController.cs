@@ -43,7 +43,7 @@ namespace Vd2022.Controllers
             var newCustomerViewModel = new customerViewModel()
             {
                 MemberShipTypes = membershiptypes,
-                Customer = null
+                Customer = new Customer()
             };
             return View(newCustomerViewModel);
         }
@@ -75,7 +75,17 @@ namespace Vd2022.Controllers
         {
             if (customer.Id == 0)
             {
-            _context.Customers.Add(customer);
+             if (ModelState.IsValid == false)
+                    {
+                        var membershiptypes = _context.MemberShipTypes.ToList();
+                        var newCustomerViewModel = new customerViewModel()
+                        {
+                            MemberShipTypes = membershiptypes,
+                            Customer = customer
+                        };
+                        return View("New", newCustomerViewModel);
+                    }
+                    _context.Customers.Add(customer);
             }
             else
             {
