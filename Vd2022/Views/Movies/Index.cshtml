@@ -1,25 +1,32 @@
-﻿@model Vd2022.Models.Movie
+﻿@model List<Vd2022.Models.Movie>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Movies";
 }
+<div style="display: flex; justify-content: space-between; margin: 10px auto; align-items: center;">
+    <h2 class="display-1 " style="font-size: 30px; ">Movies</h2>
 
-<h2>Movies</h2>
+
+</div>
+@Html.ActionLink("New Movie", "New", null, null, new { @class = "btn btn-primary d-block my-5" })
+
 
 <table class=" table table-hover table-bordered">
     <thead>
         <tr>
-            <th>Name</th>
-            
+            <th>Movie</th>
+            <th>Genre</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var movie in ViewBag.MoviesList)
+        @foreach (var movie in Model)
         {
             <tr>
                 <td>
-                    @Html.ActionLink((string)movie.Name, "Detail", "Movies", new { id = movie.Id }, null)
+                    @Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)
                 </td>
-                
+                <td>
+                    @movie.Genre.Name
+                </td>
             </tr>
         }
     </tbody>

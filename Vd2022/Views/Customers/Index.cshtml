@@ -1,26 +1,34 @@
-﻿@model Vd2022.Models.Customer
+﻿@model List<Vd2022.Models.Customer>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Customers";
 }
+<div style="display: flex; justify-content: space-between; margin: 10px auto; align-items: center ">
+    <h2 class="display-1"> Customers</h2>
 
-<h2>Customers</h2>
-
-<table class=" table table-hover table-bordered">
+</div>
+@Html.ActionLink("Add A Customer", "New", "Customers", null, new { @class = "btn btn-primary" })
+<table id="customers" class=" table table-hover table-bordered">
     <thead>
         <tr>
-            <th>Name</th>
-
+            <th> Nom </th>
+            <th>Discount Rate</th>
         </tr>
     </thead>
+
     <tbody>
-        @foreach (var customer in ViewBag.CustomersList)
+        @foreach (var customer in Model)
         {
             <tr>
                 <td>
-                    @Html.ActionLink((string)customer.Name, "Detail", "Customers", new { id = customer.Id }, null)
+                    @Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)
                 </td>
-
+                <td>
+                    @customer.MemberShipType.DiscountRate %
+                </td>
+                
             </tr>
         }
     </tbody>
 </table>
+
+

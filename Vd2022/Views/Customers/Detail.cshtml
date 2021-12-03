@@ -1,10 +1,26 @@
-﻿
+﻿@model Vd2022.Models.Customer
 @{
     ViewBag.Title = "Detail";
-    var customer = ViewBag.CustomerDetail;
 }
 
-<h2>Detail</h2>
+<h2 class="display-1 lead" style="font-size: 25px;">Customer n° @Model.Id</h2>
 
+<p class=" display-2">Name : <span class=" bold">@Model.Name</span></p>
+<p class="display-2">Birth Date : <span class=" bold">@Model.BirthDate</span></p>
+<p class=" display-2">
+    Is Subscribed To News Letter ?
+    @if (Model.IsSubscribedToNewsLetter)
+    {
+        <span class=" bold">
+            Yes 
+       </span>
+    }
+    else
+    {
+        <span class=" bold">
+            No 
+        </span>
+    }
+</p>
 
-Customer Name : @customer.Name
+<p class="display-2 "> Membership Type : <span class="bold">@Model.MemberShipType.Name</span></p>

@@ -11,60 +11,103 @@ namespace Vd2022.Controllers
     public class MoviesController : Controller
     {
         // GET: Movies
+        private ApplicationDbContext _context;
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         public ActionResult Index()
         {
-            var movies = new List<Movie>
-            {
-                new Movie{Id=1,Name ="Toy Story"},
-                new Movie{Id=2,Name ="Shrek"}
-            };
-
-            ViewBag.MoviesList = movies;
-            return View();
+            var movies = _context.Movies.Include("Genre").ToList();
+            return View(movies);
         }
-
         public ActionResult Detail(int id)
         {
-            var movies = new List<Movie>
+
+            var movie = _context.Movies.Include("Genre").Where(c => c.Id == id).FirstOrDefault();
+            if (movie == null)
             {
-                new Movie{Id=1,Name ="Toy Story"},
-                new Movie{Id=2,Name ="Shrek"}
-            };
-            ViewBag.MovieDetail = movies.ElementAt(id-1);
-            return View();
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(movie);
+            }
         }
 
-        public ActionResult Random()
+        public ActionResult New()
         {
-            var movie = new Movie
+            var genres = _context.Genres.ToList();
+            var newMovieViewModel = new movieViewModel()
             {
-                Id = 1,
-                Name = "shrek"
+                Genres = genres,
+                Movie = null
             };
-
-            var customers = new List<Customer>
-            {
-                new Customer{Id=1, Name= "Samed"},
-                new Customer{Id=2, Name= "Hamed"},
-                new Customer{Id=3, Name= "Kamed"},
-                new Customer{Id=4, Name= "Pamed"},
-
-            };
-
-            var randommovie = new RandomMovieViewModel
-            {
-                Movie = movie,
-                Customers = customers
-
-            };
-
-            ViewBag.UicMovies = movie;
-            ViewData["Movie"] = movie;
-            //return RedirectToAction("Index", "Home", new { page = 1, sortBy = "Name" });
-            return View(randommovie);
+            return View(newMovieViewModel);
         }
-        [Route ("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
-        public ActionResult ReleaseDate(int year, int month)
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var movieInDb = _context.Movies.Find(id);
+
+            if (movieInDb == null)
+            {
+                return HttpNotFound();
+            }
+
+            var genres = _context.Genres.ToList();
+
+            var newMovieViewModel = new movieViewModel()
+            {
+                Genres = genres,
+                Movie = movieInDb
+            };
+
+            return View(newMovieViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+              _context.Movies.Add(movie);
+            }
+            else
+            {
+                if (ModelState.IsValid == false)
+                {
+                    var genres = _context.Genres.ToList();
+
+                    var newMovieViewModel = new movieViewModel()
+                    {
+                        Movie = movie,
+                        Genres = genres
+                    };
+
+                    return View("Edit", newMovieViewModel);
+                }
+                var MovieInDb = _context.Movies.Find(movie.Id);
+
+                MovieInDb.Name = movie.Name;
+                MovieInDb.GenreId = movie.GenreId;
+                MovieInDb.ReleaseDate = movie.ReleaseDate;
+                MovieInDb.Stock = movie.Stock;
+
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    
+
+
+
+    [Route ("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
+        public ActionResult ReleaseDatet(int year, int month)
         {
             return Content(year +"/"+ month );
         }
