@@ -108,6 +108,7 @@ namespace Vd2022.Controllers
                 MovieInDb.GenreId = movie.GenreId;
                 MovieInDb.ReleaseDate = movie.ReleaseDate;
                 MovieInDb.Stock = movie.Stock;
+                MovieInDb.Producer = movie.Producer;
 
             }
 

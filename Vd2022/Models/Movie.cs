@@ -22,5 +22,7 @@ namespace Vd2022.Models
         [Display(Name = "Number In Stock")]
         [Required]
         public int Stock { get; set; }
+
+        public String Producer { get; set; }
     }
 }

@@ -98,3 +98,10 @@ C:\Users\TONPC\source\repos\Vd2022\Vd2022\obj\Debug\Vd2022.Migrations.AddedAnnot
 C:\Users\TONPC\source\repos\Vd2022\Vd2022\obj\Debug\Vd2022.Migrations.removedAnnotationMovie.resources
 C:\Users\TONPC\source\repos\Vd2022\Vd2022\obj\Debug\Vd2022.Migrations.ChangedMovieGenreIdDisplay.resources
 C:\Users\TONPC\source\repos\Vd2022\Vd2022\obj\Debug\Vd2022.Migrations.AddedAnnotationsCustomerPlusMovies.resources
+C:\Users\TONPC\source\repos\Vd2022\Vd2022\bin\System.Net.Http.Formatting.dll
+C:\Users\TONPC\source\repos\Vd2022\Vd2022\bin\System.Web.Http.dll
+C:\Users\TONPC\source\repos\Vd2022\Vd2022\bin\System.Web.Http.WebHost.dll
+C:\Users\TONPC\source\repos\Vd2022\Vd2022\bin\System.Net.Http.Formatting.xml
+C:\Users\TONPC\source\repos\Vd2022\Vd2022\bin\System.Web.Http.xml
+C:\Users\TONPC\source\repos\Vd2022\Vd2022\bin\System.Web.Http.WebHost.xml
+C:\Users\TONPC\source\repos\Vd2022\Vd2022\obj\Debug\Vd2022.Migrations.AddedProducerMovie.resources
